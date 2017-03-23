@@ -8,6 +8,7 @@ node_modules
 /tsconfig.json
 /tslint.json
 
+.DS_Store
 .npmignore
 .editorconfig
 circle.yml
