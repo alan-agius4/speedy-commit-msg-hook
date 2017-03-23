@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"target": "es2015",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"declaration": true,
+		"noImplicitReturns": true,
+		"noImplicitAny": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowUnreachableCode": false,
+		"skipLibCheck": true,
+		"strictNullChecks": true,
+		"noEmitOnError": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"stripInternal": true,
+		"noImplicitUseStrict": true,
+		"types": [
+			"node",
+			"jasmine"
+		],
+		"lib": [
+			"es2015"
+		]
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"typings/**/*.d.ts",
+		"src/**/*.ts"
+	]
+}

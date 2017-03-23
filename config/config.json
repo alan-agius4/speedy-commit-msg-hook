@@ -1,0 +1,39 @@
+{
+	"rules": {
+		"message": {
+			"allowUnscoped": true,
+			"ignoreMsgStarting": [
+				"Revert",
+				"revert",
+				"Merge",
+				"merge"
+			]
+		},
+		"scopes": [
+			"amend",
+			"feat",
+			"fix",
+			"docs",
+			"style",
+			"refactor",
+			"perf",
+			"test",
+			"chore",
+			"revert"
+		],
+		"types": {
+			"camelCase": false,
+			"kebabCase": false,
+			"allLowerCase": true,
+			"allUpperCase": true,
+			"allowSpace": true,
+			"allowDash": false,
+			"allowUnderscore": false
+		}
+	},
+	"subject": {
+		"upperFirst": false,
+		"endWithPeriod": false,
+		"allLowerCase": true
+	}
+}
