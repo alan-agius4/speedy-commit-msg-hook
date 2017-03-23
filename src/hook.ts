@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { readFileAsync, readJsonFileAsync, getConfigFilePath } from "./utils";
 
 import { ConfigData, MessageRules, TypeRules } from "./config.model";
