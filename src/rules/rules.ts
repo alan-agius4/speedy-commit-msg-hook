@@ -1,13 +1,10 @@
-export interface ValidationResult {
-	message: string;
-	passed: boolean;
-}
+import {RulesResult} from "./rules.model";
 
 export namespace Rules {
 
-	export function allowUnscoped(message: string): ValidationResult {
+	export function allowUnscoped(message: string): RulesResult {
 		return {
-			passed: !/^[\w\-]+\(.+\):/.test(message),
+			failed: !/^[\w\-]+\(.+\):/.test(message),
 			message: "Unscoped commit messages are not allowed."
 		};
 	}
@@ -19,30 +16,30 @@ export namespace Rules {
 	// 	};
 	// }
 
-	export function scopes(scope: string, validScopes: string[]): ValidationResult {
+	export function scopes(scope: string, validScopes: string[]): RulesResult {
 		return {
-			passed: !new RegExp(`^${validScopes.join("|")}`).test(scope),
+			failed: !new RegExp(`^${validScopes.join("|")}`).test(scope),
 			message: `Commit 'Scope' provided is not valid. Valid scopes are: ${validScopes.join(", ")}`
 		};
 	}
 
-	export function allowDash(type: string): ValidationResult {
+	export function allowDash(type: string): RulesResult {
 		return {
-			passed: type.indexOf("-") > -1,
+			failed: type.indexOf("-") > -1,
 			message: "Commit 'Type' cannot contain dashes"
 		};
 	}
 
-	export function allowSpace(type: string): ValidationResult {
+	export function allowSpace(type: string): RulesResult {
 		return {
-			passed: type.indexOf(" ") > -1,
+			failed: type.indexOf(" ") > -1,
 			message: "Commit 'Type' cannot contain spaces"
 		};
 	}
 
-	export function allowUnderscore(type: string): ValidationResult {
+	export function allowUnderscore(type: string): RulesResult {
 		return {
-			passed: type.indexOf("_") > -1,
+			failed: type.indexOf("_") > -1,
 			message: "Commit 'Type' cannot contain underscore"
 		};
 	}
