@@ -19,7 +19,7 @@ export namespace Rules {
 
 	export function validTypes(text: string, part: CommitMessagePart, validTypes: string[]): RulesResult {
 		return {
-			failed: !new RegExp(`^${validTypes.join("|")}\\(`).test(text),
+			failed: !new RegExp(`^(${validTypes.join("|")})$`).test(text),
 			message: `Commit '${part}' is not valid. Valid types are: ${validTypes.join(", ")}.`
 		};
 	}
