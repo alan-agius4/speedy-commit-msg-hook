@@ -38,16 +38,16 @@ export async function readJsonFileAsync<T>(path: string): Promise<T> {
  * Defaults: fileName: package.json, startPath: process.cwd()
  *
  * @export
- * @param {string} [fileName="package.json"]
+ * @param {string} [path="package.json"]
  * @param {string} [startPath=process.cwd()]
  * @returns {(string | null)}
  */
-export function findFileRecursively(fileName = "package.json", startPath = process.cwd()): string | null {
+export function findFileRecursively(path = "package.json", startPath = process.cwd()): string | null {
 	startPath = normalize(startPath);
 
 	try {
 		const directory = join(startPath, sep);
-		statSync(join(directory, fileName));
+		statSync(join(directory, path));
 		return directory;
 	} catch (error) {
 		// do nothing
@@ -59,7 +59,7 @@ export function findFileRecursively(fileName = "package.json", startPath = proce
 	}
 
 	const truncatedPath = startPath.substr(0, position++);
-	return findFileRecursively(fileName, truncatedPath);
+	return findFileRecursively(path, truncatedPath);
 }
 
 export function getConfigFilePath(file: string): string {
@@ -73,5 +73,5 @@ export function getConfigFilePath(file: string): string {
 		return path;
 	}
 
-	return join(__dirname, "../../", file);
+	return join(__dirname, "../../config", file);
 }

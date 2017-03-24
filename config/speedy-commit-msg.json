@@ -1,0 +1,31 @@
+{
+	"rules": {
+		"message": {
+			"noUnscoped": true
+		},
+		"type": {
+			"validTypes": [
+				"amend",
+				"feat",
+				"fix",
+				"docs",
+				"style",
+				"refactor",
+				"perf",
+				"test",
+				"chore",
+				"revert"
+			]
+		},
+		"scope": {
+			"noSpace": true,
+			"noDash": false,
+			"noUnderscore": false
+		},
+		"subject": {
+			"noPeriodAtEnd": false,
+			"noUpperFirst": false,
+			"noLowerFirst": true
+		}
+	}
+}
