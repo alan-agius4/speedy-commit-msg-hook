@@ -95,6 +95,16 @@ describe("rulesSpec", () => {
 		});
 	});
 
+	describe(Rules.startWithSpace.name, () => {
+		it("should fail when first character is not a space", () => {
+			expect(Rules.startWithSpace("register", MESSAGE_PART).failed).toBe(true);
+		});
+
+		it("should not fail when first character is a space", () => {
+			expect(Rules.startWithSpace(" register", MESSAGE_PART).failed).toBe(false);
+		});
+	});
+
 	describe(Rules.noLowerFirst.name, () => {
 		it("should fail when first character is LowerCase", () => {
 			expect(Rules.noLowerFirst("register", MESSAGE_PART).failed).toBe(true);

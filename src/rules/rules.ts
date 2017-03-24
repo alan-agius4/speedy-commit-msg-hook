@@ -79,4 +79,11 @@ export namespace Rules {
 			message: `Commit '${part}' last character cannot be a period.`
 		};
 	}
+
+	export function startWithSpace(text: string, part: CommitMessagePart): RulesResult {
+		return {
+			failed: /^(\s){1}/.test(text),
+			message: `Commit '${part}' first character must be a space.`
+		};
+	}
 }
