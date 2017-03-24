@@ -15,7 +15,7 @@ async function getCommitMsg(): Promise<string> {
 		.shift()!;
 }
 
-async function validate() {
+export async function validate() {
 	try {
 		const commitMessage = await getCommitMsg();
 		const config = await readJsonFileAsync<ConfigData>(getConfigFilePath("speedy-commit-msg.json"));
@@ -47,21 +47,19 @@ async function validate() {
 		}
 
 	} catch (error) {
-		console.log(error);
+		console.log(`\n${error}\n`);
 		process.exit(1);
 	}
 }
 
-function validatePart(text: string, messagePart: CommitMessagePart, options: any) {
-
+export function validatePart(text: string, messagePart: CommitMessagePart, options: any) {
 	for (const rule in options) {
 		if (!options.hasOwnProperty(rule)) {
 			continue;
 		}
 
-		const value = _.get(options, rule);
-
-		if (_.isBoolean(value) && value === true) {
+		const value = _.get(options, rule) as boolean | string[];
+		if (value === false) {
 			continue;
 		}
 
@@ -72,7 +70,6 @@ function validatePart(text: string, messagePart: CommitMessagePart, options: any
 			throw new Error(result.message);
 		}
 	}
-
 }
 
 validate();
