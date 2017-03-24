@@ -5,7 +5,7 @@ export namespace Rules {
 
 	export function noUnscoped(text: string): RulesResult {
 		return {
-			failed: !/[a-z]+\(.+\):/.test(text),
+			failed: !/[a-z]+[\s]?\(.+\):/.test(text),
 			message: "Unscoped commit messages are not allowed."
 		};
 	}
