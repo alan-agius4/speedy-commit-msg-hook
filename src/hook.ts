@@ -25,11 +25,14 @@ export async function validate() {
 			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, message);
 		}
 
-		const msgSplit = /(.+)\((.+)\):(.+)/.exec(commitMessage);
-		if (!msgSplit) {
-			// commit message must be unscoped.
-			// if it's not allowed we won't reach here.
+		if (!Rules.SCOPED_COMMIT_REGEXP.test(commitMessage)) {
 			return;
+		}
+
+		const msgSplit = /(.+)\((.+)\):\s{1}(.+)/.exec(commitMessage);
+
+		if (!msgSplit) {
+			throw new Error(`Commit message 'header' must be in this format: '<type>(<scope>): <subject>'`);
 		}
 
 		const [, msgType, msgScope, msgSubject] = msgSplit;

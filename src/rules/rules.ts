@@ -1,11 +1,14 @@
 import * as _ from "lodash";
 
 import { RulesResult, CommitMessagePart } from "./rules.model";
+
 export namespace Rules {
+
+	export const SCOPED_COMMIT_REGEXP = /[a-z]+[\s]?\(.+\):/;
 
 	export function noUnscoped(text: string): RulesResult {
 		return {
-			failed: !/[a-z]+[\s]?\(.+\):/.test(text),
+			failed: !SCOPED_COMMIT_REGEXP.test(text),
 			message: "Unscoped commit messages are not allowed."
 		};
 	}
@@ -80,10 +83,4 @@ export namespace Rules {
 		};
 	}
 
-	export function startWithSpace(text: string, part: CommitMessagePart): RulesResult {
-		return {
-			failed: /^(\s){1}/.test(text),
-			message: `Commit '${part}' first character must be a space.`
-		};
-	}
 }
