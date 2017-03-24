@@ -1,7 +1,8 @@
 {
 	"rules": {
 		"message": {
-			"noUnscoped": true
+			"noUnscoped": false,
+			"maxLength": 75
 		},
 		"type": {
 			"validTypes": [
@@ -18,14 +19,14 @@
 			]
 		},
 		"scope": {
-			"noSpace": true,
-			"noDash": false,
-			"noUnderscore": false
+			"noSpace": false,
+			"noDash": true,
+			"noUnderscore": true
 		},
 		"subject": {
-			"noPeriodAtEnd": false,
-			"noUpperFirst": false,
-			"noLowerFirst": true
+			"noPeriodAtEnd": true,
+			"noUpperFirst": true,
+			"noLowerFirst": false
 		}
 	}
 }
