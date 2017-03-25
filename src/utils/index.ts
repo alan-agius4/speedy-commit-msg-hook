@@ -1,2 +1,1 @@
-export * from "./file-system";
-export * from "./dictionary";
+export * from "./utils";

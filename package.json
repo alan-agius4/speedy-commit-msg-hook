@@ -31,19 +31,23 @@
     "changelog": "./node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s",
     "preversion": "npm test",
     "version": "npm run build && npm run changelog",
-    "postversion": "git commit --all -m 'chore(all): update for release' && git push && git push --tags"
+    "postversion": "git commit --all -m 'chore(all): update for release' && git push && git push --tags",
+    "prepublish": "ts-node ./tools/modify-package",
+    "postpublish": "git clean -f"
   },
   "dependencies": {
-    "chalk": "^1.1.3",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.41",
     "@types/lodash": "^4.14.57",
+    "@types/mock-fs": "^3.6.30",
     "@types/node": "^7.0.10",
     "conventional-changelog-cli": "^1.3.1",
     "jasmine": "^2.5.3",
+    "mock-fs": "^4.2.0",
     "rimraf": "^2.6.1",
+    "ts-node": "^3.0.2",
     "tslint": "^4.5.1",
     "typescript": "~2.1.6"
   },

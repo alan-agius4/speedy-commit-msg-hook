@@ -1,6 +1,6 @@
 import * as _ from "lodash";
-import { readFile, statSync, existsSync } from "fs";
-import { join, sep, normalize, isAbsolute } from "path";
+import { readFile, statSync } from "fs";
+import { join, sep, normalize } from "path";
 
 let _rootPath: string | null;
 export function getRootPath(): string {
@@ -32,22 +32,33 @@ export async function readJsonFileAsync<T>(path: string): Promise<T> {
 	return JSON.parse(await readFileAsync(path));
 }
 
+export async function getCommitMessage(): Promise<string> {
+	const result = await readFileAsync(process.argv[2]);
+
+	if (!result) {
+		throw new Error("No commit message provided.");
+	}
+
+	return result.split("\n", 1)[0];
+}
+
+
 /**
  * Find a file recursively in the file system from the starting path upwards.
  *
  * Defaults: fileName: package.json, startPath: process.cwd()
  *
  * @export
- * @param {string} [fileName="package.json"]
+ * @param {string} [path="package.json"]
  * @param {string} [startPath=process.cwd()]
  * @returns {(string | null)}
  */
-export function findFileRecursively(fileName = "package.json", startPath = process.cwd()): string | null {
+export function findFileRecursively(path = "package.json", startPath = process.cwd()): string | null {
 	startPath = normalize(startPath);
 
 	try {
 		const directory = join(startPath, sep);
-		statSync(join(directory, fileName));
+		statSync(join(directory, path));
 		return directory;
 	} catch (error) {
 		// do nothing
@@ -59,19 +70,5 @@ export function findFileRecursively(fileName = "package.json", startPath = proce
 	}
 
 	const truncatedPath = startPath.substr(0, position++);
-	return findFileRecursively(fileName, truncatedPath);
-}
-
-export function getConfigFilePath(file: string): string {
-	if (isAbsolute(file)) {
-		return file;
-	}
-
-	const path = join(getRootPath(), file);
-
-	if (existsSync(path)) {
-		return path;
-	}
-
-	return join(__dirname, "../../", file);
+	return findFileRecursively(path, truncatedPath);
 }

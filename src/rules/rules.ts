@@ -1,80 +1,86 @@
 import * as _ from "lodash";
 
-export interface ValidationResult {
-	message: string;
-	failed: boolean;
-}
+import { RulesResult, CommitMessagePart } from "./rules.model";
 
 export namespace Rules {
 
-	export function allowUnscoped(message: string): ValidationResult {
+	export const SCOPED_COMMIT_REGEXP = /[a-z]+[\s]?\(.+\):/;
+
+	export function noUnscoped(text: string): RulesResult {
 		return {
-			failed: !/[a-z]+\(.+\):/.test(message),
+			failed: !SCOPED_COMMIT_REGEXP.test(text),
 			message: "Unscoped commit messages are not allowed."
 		};
 	}
 
-	export function maxLength(message: string, value: number): ValidationResult {
+	export function maxLength(text: string, part: CommitMessagePart, maxLength: number): RulesResult {
 		return {
-			failed: value < message.length,
-			message: `Commit message cannot exceed ${value} characters.`
+			failed: maxLength < text.length,
+			message: `Commit '${part}' cannot exceed ${maxLength} characters.`
 		};
 	}
 
-
-	// export function ignoreMsgStarting(message: string, value: string[]): ValidationResult {
-	// 	return {
-	// 		passed: !new RegExp(^value.join("|")).test(message),
-	// 		message: "Unscoped commit messages are not allowed."
-	// 	};
-	// }
-
-	export function scopes(scope: string, validScopes: string[]): ValidationResult {
+	export function validTypes(text: string, part: CommitMessagePart, validTypes: string[]): RulesResult {
 		return {
-			failed: !new RegExp(`^${validScopes.join("|")}\(`).test(scope),
-			message: `Commit scope is not valid. Valid scopes are: ${validScopes.join(", ")}.`
+			failed: !new RegExp(`^(${validTypes.join("|")})$`).test(text),
+			message: `Commit '${part}' is not valid. Valid types are: ${validTypes.join(", ")}.`
 		};
 	}
 
-	export function allowDash(type: string): ValidationResult {
+	export function noDash(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: type.indexOf("-") > -1,
-			message: "Commit 'Type' cannot contain dashes."
+			failed: text.indexOf("-") > -1,
+			message: `Commit '${part}' cannot contain dashes.`
 		};
 	}
 
-	export function allowSpace(type: string): ValidationResult {
+	export function noSpace(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: type.indexOf(" ") > -1,
-			message: "Commit 'Type' cannot contain spaces."
+			failed: text.indexOf(" ") > -1,
+			message: `Commit '${part}' cannot contain spaces.`
 		};
 	}
 
-	export function allowUnderscore(type: string): ValidationResult {
+	export function noUnderscore(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: type.indexOf("_") > -1,
-			message: "Commit 'Type' cannot contain underscore."
+			failed: text.indexOf("_") > -1,
+			message: `Commit '${part}' cannot contain underscore.`
 		};
 	}
 
-	export function camelCase(type: string): ValidationResult {
+	export function noCamelCase(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: _.camelCase(type) === type,
-			message: "Commit 'Type' cannot contain underscore."
+			failed: _.camelCase(text) === text,
+			message: `Commit '${part}' cannot be in CamelCase format.`
 		};
 	}
 
-	export function kebabCase(type: string): ValidationResult {
+	export function noKebabCase(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: _.kebabCase(type) === type,
-			message: "Commit 'Type' cannot be in kebabCase format."
+			failed: _.kebabCase(text) === text,
+			message: `Commit '${part}' cannot be in KebabCase format.`
 		};
 	}
 
-	export function snakeCase(type: string): ValidationResult {
+	export function noUpperFirst(text: string, part: CommitMessagePart): RulesResult {
 		return {
-			failed: _.snakeCase(type) === type,
-			message: "Commit 'Type' cannot be in snakeCase format."
+			failed: /^[A-Z]/.test(text),
+			message: `Commit '${part}' first character cannot be UpperCase.`
 		};
 	}
+
+	export function noLowerFirst(text: string, part: CommitMessagePart): RulesResult {
+		return {
+			failed: /^[a-z]/.test(text),
+			message: `Commit '${part}' first character cannot be in LowerCase.`
+		};
+	}
+
+	export function noPeriodAtEnd(text: string, part: CommitMessagePart): RulesResult {
+		return {
+			failed: /[.]$/.test(text),
+			message: `Commit '${part}' last character cannot be a period.`
+		};
+	}
+
 }
