@@ -4,7 +4,6 @@
 		"outDir": "./test"
 	},
 	"include": [
-		"typings/**/*.d.ts",
 		"src/**/*.ts"
 	]
 }
