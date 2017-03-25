@@ -1,4 +1,4 @@
-import { lstatSync, renameSync, unlinkSync, symlinkSync } from "fs";
+import { lstatSync, Stats, renameSync, unlinkSync, symlinkSync } from "fs";
 import { join } from "path";
 
 import { findFileRecursively } from "./utils";
@@ -12,13 +12,19 @@ if (!gitRoot) {
 
 const hooksPath = join(gitRoot!, ".git", "hooks");
 const commitMsgHookPath = join(hooksPath, "commit-msg");
-const fileStat = lstatSync(commitMsgHookPath);
+let fileStat: Stats | undefined;
 
-if (fileStat.isSymbolicLink()) {
+try {
+	fileStat = lstatSync(commitMsgHookPath);
+} catch (error) {
+	//do nothing
+}
+
+if (fileStat && fileStat.isSymbolicLink()) {
 	unlinkSync(commitMsgHookPath);
 }
 
-if (fileStat.isFile()) {
+if (fileStat && fileStat.isFile()) {
 	renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
 }
 
