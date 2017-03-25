@@ -49,11 +49,7 @@
     "rimraf": "^2.6.1",
     "ts-node": "^3.0.2",
     "tslint": "^4.5.1",
-<<<<<<< HEAD
     "typescript": "^2.2.0"
-=======
-    "typescript": "^2.1.0"
->>>>>>> 28bbb279e4eac0a15ed8730bfddc5dc9c9902de2
   },
   "typings": "dist/index.d.ts"
 }
