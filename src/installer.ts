@@ -20,12 +20,24 @@ try {
 	//do nothing
 }
 
-if (fileStat && fileStat.isSymbolicLink()) {
-	unlinkSync(commitMsgHookPath);
+if (process.argv[2] === "uninstall") {
+	uninstall();
+} else {
+	install();
 }
 
-if (fileStat && fileStat.isFile()) {
-	renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+function install() {
+	uninstall();
+
+	if (fileStat && fileStat.isFile()) {
+		renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+	}
+
+	symlinkSync(join(__dirname, "index.js"), commitMsgHookPath);
 }
 
-symlinkSync(join(__dirname, "hook.js"), commitMsgHookPath);
+function uninstall() {
+	if (fileStat && fileStat.isSymbolicLink()) {
+		unlinkSync(commitMsgHookPath);
+	}
+}

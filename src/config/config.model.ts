@@ -1,4 +1,5 @@
 export interface ConfigData {
+	extends?: string | string[];
 	rules: RulesSection;
 }
 

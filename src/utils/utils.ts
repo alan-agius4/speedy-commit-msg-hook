@@ -1,6 +1,6 @@
 import * as _ from "lodash";
-import { readFile, statSync, existsSync } from "fs";
-import { join, sep, normalize, isAbsolute } from "path";
+import { readFile, statSync } from "fs";
+import { join, sep, normalize } from "path";
 
 let _rootPath: string | null;
 export function getRootPath(): string {
@@ -32,6 +32,17 @@ export async function readJsonFileAsync<T>(path: string): Promise<T> {
 	return JSON.parse(await readFileAsync(path));
 }
 
+export async function getCommitMessage(): Promise<string> {
+	const result = await readFileAsync(process.argv[2]);
+
+	if (!result) {
+		throw new Error("No commit message provided.");
+	}
+
+	return result.split("\n", 1)[0];
+}
+
+
 /**
  * Find a file recursively in the file system from the starting path upwards.
  *
@@ -60,18 +71,4 @@ export function findFileRecursively(path = "package.json", startPath = process.c
 
 	const truncatedPath = startPath.substr(0, position++);
 	return findFileRecursively(path, truncatedPath);
-}
-
-export function getConfigFilePath(file: string): string {
-	if (isAbsolute(file)) {
-		return file;
-	}
-
-	const path = join(getRootPath(), file);
-
-	if (existsSync(path)) {
-		return path;
-	}
-
-	return join(__dirname, "../../config", file);
 }

@@ -26,12 +26,14 @@ describe("rulesSpec", () => {
 	});
 
 	describe(Rules.validTypes.name, () => {
+		const VALID_TYPES = ["test", "refactor"];
+
 		it("should fail when 'type' is not valid", () => {
-			expect(Rules.validTypes(COMMIT_MSG, MESSAGE_PART, ["test", "refactor"]).failed).toBe(true);
+			expect(Rules.validTypes("style", MESSAGE_PART, VALID_TYPES).failed).toBe(true);
 		});
 
 		it("should not fail when 'type' is valid", () => {
-			expect(Rules.validTypes(COMMIT_MSG, MESSAGE_PART, ["test", "style"]).failed).toBe(false);
+			expect(Rules.validTypes("test", MESSAGE_PART, VALID_TYPES).failed).toBe(false);
 		});
 	});
 
