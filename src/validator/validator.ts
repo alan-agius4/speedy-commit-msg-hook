@@ -42,10 +42,6 @@ export namespace Validator {
 
 	export function validatePart(text: string, messagePart: CommitMessagePart, options: any) {
 		for (const rule in options) {
-			if (!options.hasOwnProperty(rule)) {
-				continue;
-			}
-
 			const value = _.get(options, rule) as boolean | string[];
 			if (value === false) {
 				continue;
