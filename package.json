@@ -33,7 +33,7 @@
     "version": "npm run build && npm run changelog",
     "postversion": "git commit --all -m 'chore(all): update for release' && git push && git push --tags",
     "prepublish": "ts-node ./tools/modify-package",
-    "postpublish": "git checkout ."
+    "postpublish": "git clean -f"
   },
   "dependencies": {
     "lodash": "^4.17.4"
