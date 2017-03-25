@@ -41,18 +41,17 @@ export namespace Validator {
 	}
 
 	export function validatePart(text: string, messagePart: CommitMessagePart, options: any) {
-		for (const rule in options) {
-			const value = _.get(options, rule) as boolean | string[];
+		_.forEach(options, (value, key: string) => {
 			if (value === false) {
-				continue;
+				return;
 			}
 
-			const result = (_.get(Rules, rule) as Function)
+			const result = (_.get(Rules, key) as Function)
 				.call(null, text, messagePart, value) as RulesResult;
 
 			if (result.failed) {
 				throw new Error(result.message);
 			}
-		}
+		});
 	}
 }
