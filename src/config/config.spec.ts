@@ -11,7 +11,8 @@ describe("getConfig", () => {
 		],
 		rules: {
 			message: {
-				maxLength: 100
+				maxLength: 100,
+				minLength: 2
 			}
 		}
 	};
@@ -20,7 +21,8 @@ describe("getConfig", () => {
 		extends: "./config/secondary-extend.json",
 		rules: {
 			message: {
-				minLength: 2
+				minLength: 1,
+				noDashes: true
 			}
 		}
 	};
@@ -28,6 +30,7 @@ describe("getConfig", () => {
 	const SECONDARY_EXTEND_FILE: ConfigData = {
 		rules: {
 			message: {
+				minLength: 4,
 				noWhiteSpace: true
 			}
 		}
@@ -47,16 +50,22 @@ describe("getConfig", () => {
 		mockFs.restore();
 	});
 
-	it("should merge properties of extended config", async done => {
+	it("should merge object of extended config", async done => {
 		const result = await getConfig("speedy-commit-msg-hook.json");
 		expect(result.rules.message.maxLength).toBe(100);
+		expect(result.rules.message.noDashes).toBe(true);
+		done();
+	});
+
+	it("should override same properties", async done => {
+		const result = await getConfig("speedy-commit-msg-hook.json");
 		expect(result.rules.message.minLength).toBe(2);
 		done();
 	});
 
 	it("should merge properties of nested extended config", async done => {
 		const result = await getConfig("speedy-commit-msg-hook.json");
-		expect(result.rules.message.maxLength).toBe(100);
+		expect(result.rules.message.noDashes).toBe(true);
 		expect(result.rules.message.minLength).toBe(2);
 		expect(result.rules.message.noWhiteSpace).toBe(true);
 		done();
