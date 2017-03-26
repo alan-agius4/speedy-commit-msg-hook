@@ -1,23 +1,21 @@
 import * as _ from "lodash";
 import { existsSync } from "fs";
-import { dirname, isAbsolute, resolve, join } from "path";
+import { isAbsolute, join } from "path";
 
 import { readJsonFileAsync, getRootPath } from "../utils";
 import { ConfigData } from "./config.model";
 
-export async function extendsConfig(config: ConfigData, configFilePath: string): Promise<ConfigData> {
-	const configExtends = _.castArray<string>(config.extends);
+export async function getConfig(filePath: string): Promise<ConfigData> {
+	let config = await readJsonFileAsync<ConfigData>(filePath);
 
-	if (!configExtends) {
+	if (_.isEmpty(config.extends)) {
 		return config;
 	}
 
-	const configPath = dirname(configFilePath);
-	const configObject = config;
+	const configExtends = _.castArray<string>(config.extends);
 
 	for (const path of configExtends) {
-		const result = await readJsonFileAsync<ConfigData>(resolve(configPath, path));
-		Object.assign(configObject.rules, result.rules);
+		config = _.merge(config, await getConfig(path));
 	}
 
 	return config;

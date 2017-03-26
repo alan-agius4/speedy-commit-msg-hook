@@ -1,14 +1,14 @@
 import * as _ from "lodash";
 
-import { getCommitMessage, readJsonFileAsync } from "../utils";
+import { getCommitMessage } from "../utils";
 import { Rules, RulesResult, CommitMessagePart, COMMIT_MESSAGE_PART } from "../rules";
-import { ConfigData, getConfigFilePath } from "../config";
+import { getConfigFilePath, getConfig } from "../config";
 
 export namespace Validator {
 
 	export async function validate() {
 		const commitMessage = await getCommitMessage();
-		const config = await readJsonFileAsync<ConfigData>(getConfigFilePath("speedy-commit-msg.json"));
+		const config = await getConfig(getConfigFilePath("speedy-commit-msg.json"));
 		const { type, message, scope, subject } = config.rules;
 
 		if (message) {
