@@ -32,8 +32,8 @@
     "preversion": "npm test",
     "version": "npm run build && npm run changelog",
     "postversion": "git commit --all -m \"chore(all): update for release\" && git push && git push --tags",
-    "prepublish": "ts-node ./tools/modify-package",
-    "postpublish": "git checkout ."
+    "postinstall": "node ./dist/installer install",
+    "preuninstall": "node ./dist/installer uninstall"
   },
   "dependencies": {
     "lodash": "^4.17.4"
