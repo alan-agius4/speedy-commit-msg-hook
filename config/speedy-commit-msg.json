@@ -1,7 +1,15 @@
 {
 	"rules": {
 		"message": {
-			"max-length": 75
+			"max-length": 75,
+			"banned-phrases": [
+				"minor change",
+				"minor fix",
+				"minor refactor",
+				"pr change",
+				"pr comment",
+				"following pr"
+			]
 		},
 		"type": {
 			"valid-types": [

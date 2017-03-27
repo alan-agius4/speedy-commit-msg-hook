@@ -5,6 +5,17 @@ describe("rulesSpec", () => {
 	const MESSAGE_PART: CommitMessagePart = "Type";
 	const COMMIT_MSG = "style(all): formatting";
 
+	describe(Rules.bannedPhrases.name, () => {
+		const bannedPhrases =  ["pr change"];
+		it("should fail when commit contain banned phrases", () => {
+			expect(Rules.bannedPhrases("chore(all): PR changes", MESSAGE_PART, bannedPhrases).failed).toBe(true);
+		});
+
+		it("should not fail when commit doesn't contain banned phrases", () => {
+			expect(Rules.bannedPhrases(COMMIT_MSG, MESSAGE_PART, bannedPhrases).failed).toBe(false);
+		});
+	});
+
 	describe(Rules.noUnscoped.name, () => {
 		it("should fail when commit message is not scope", () => {
 			expect(Rules.noUnscoped("unscoped message").failed).toBe(true);

@@ -6,6 +6,13 @@ export namespace Rules {
 
 	export const SCOPED_COMMIT_REGEXP = /[a-z]+[\s]?\(.+\):/;
 
+	export function bannedPhrases(text: string, part: CommitMessagePart, bannedPhrases: string[]): RulesResult {
+		return {
+			failed: new RegExp(`(${bannedPhrases.join("|")})`, "ig").test(text),
+			message: `Commit '${part}' is not valid. You are using a 'Banned Phrase'. Banned phrases are: ${bannedPhrases.join(", ")}.`
+		};
+	}
+
 	export function noUnscoped(text: string): RulesResult {
 		return {
 			failed: !SCOPED_COMMIT_REGEXP.test(text),

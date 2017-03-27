@@ -25,6 +25,7 @@ The majority of the rules can be applied in any part of the configuration.
 |--------------------|------------------------------------------------------------------|----------|---------|
 | `no-unscoped`      | Disallows unscoped commit messages                               | boolean  | Message |
 | `valid-types`      | An array of allowed commit message types ex: `["feat", "chore"]` | string[] | Type    |
+| `banned-phrases`   | An array of disallowed phrases. (Case insensitive)               | string[] | All     |
 | `max-length`       | Requires text to be under a certain max length                   | number   | All     |
 | `no-dash`          | Disallows dashes                                                 | boolean  | All     |
 | `no-space`         | Disallows spaces                                                 | boolean  | All     |
@@ -49,7 +50,15 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
 {
   "rules": {
     "message": {
-      "max-length": 75
+      "max-length": 75,
+      "banned-phrases": [
+        "minor change",
+        "minor fix",
+        "minor refactor",
+        "pr change",
+        "pr comment",
+        "following pr"
+      ]
     },
     "type": {
       "valid-types": [
