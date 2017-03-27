@@ -18,7 +18,7 @@ Commit subject format:
 npm install @speedy/commit-msg-hook --save-dev
 ```
 
-## Available Rules
+## Rules
 
 The majority of the rules can be applied in any part of the confirguration.
 
