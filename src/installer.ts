@@ -17,7 +17,7 @@ let fileStat: Stats | undefined;
 try {
 	fileStat = lstatSync(commitMsgHookPath);
 } catch (error) {
-	//do nothing
+	// do nothing
 }
 
 if (process.argv[2] === "uninstall") {
@@ -33,7 +33,7 @@ function install() {
 		renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
 	}
 
-	symlinkSync(join(__dirname, "index.js"), commitMsgHookPath);
+	symlinkSync(join(__dirname, "hook.js"), commitMsgHookPath);
 }
 
 function uninstall() {

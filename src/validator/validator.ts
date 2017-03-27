@@ -6,9 +6,9 @@ import { getConfigFilePath, getConfig } from "../config";
 
 export namespace Validator {
 
-	export async function validate() {
-		const commitMessage = await getCommitMessage();
-		const config = await getConfig(getConfigFilePath("speedy-commit-msg.json"));
+	export async function validate(commitMessage?: string, configFilePath?: string) {
+		commitMessage = commitMessage || await getCommitMessage();
+		const config = await getConfig(getConfigFilePath(configFilePath || "speedy-commit-msg.json"));
 		const { type, message, scope, subject } = config.rules;
 
 		if (message) {
