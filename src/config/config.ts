@@ -15,7 +15,7 @@ export async function getConfig(filePath: string): Promise<ConfigData> {
 	const configExtends = _.castArray<string>(config.extends);
 
 	for (const path of configExtends) {
-		config = _.merge(await getConfig(path), config);
+		config = _.merge({}, await getConfig(path), config);
 	}
 
 	return config;

@@ -20,7 +20,6 @@ export namespace Validator {
 		}
 
 		const msgSplit = /(.+)\((.+)\):\s{1}(.+)/.exec(commitMessage);
-
 		if (!msgSplit) {
 			throw new Error(`Commit message 'header' must be in this format: '<type>(<scope>): <subject>'`);
 		}
