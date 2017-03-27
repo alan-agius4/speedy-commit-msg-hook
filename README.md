@@ -4,9 +4,9 @@
 [![Dependency Status](https://img.shields.io/david/alan-agius4/commit-msg-hook.svg?style=flat-square)](https://david-dm.org/alan-agius4/speedy-commit-msg-hook)
 [![devDependency Status](https://img.shields.io/david/dev/alan-agius4/commit-msg-hook.svg?style=flat-square)](https://david-dm.org/alan-agius4/speedy-commit-msg-hook?type=dev)
 
-A highly customizable git commit message hook. It validates a commit message against a set of configuration. Based on the [`Conventional Changelog`](https://github.com/conventional-changelog/conventional-changelog) standards. 
+A highly customizable git commit message hook. Validates a commit message against a set of configuration, based on the [`Conventional Changelog`](https://github.com/conventional-changelog/conventional-changelog) standards. 
 
-Commit subject format:
+Commit first line format:
 ```txt
 <type>(<scope>): <subject>
 ```
@@ -19,7 +19,7 @@ npm install @speedy/commit-msg-hook --save-dev
 
 ## Rules
 
-The majority of the rules can be applied in any part of the confirguration.
+The majority of the rules can be applied in any part of the configuration.
 
 | Name               | Description                                                      | Type     | Section |
 |--------------------|------------------------------------------------------------------|----------|---------|
@@ -37,7 +37,7 @@ The majority of the rules can be applied in any part of the confirguration.
 
 ## Configuration
 
-By default, it will try to locate the `speedy-commit-msg.json` file in the root of your project folder.
+By default, will try to locate the `speedy-commit-msg.json` file in the root of your project folder.
 
 If the file is not found it will fallback to an internal `speedy-commit-msg.json` found in `config` folder.
 
@@ -78,7 +78,7 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
 ```
 
 ### extends
-Your configuration can extend one or more existing configurations.
+Configuration can be extended with one or many existing configurations.
 
 ```json
 {
