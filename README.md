@@ -17,7 +17,7 @@ Commit first line format:
 npm install @speedy/commit-msg-hook --save-dev
 ```
 
-Note: for Windows users, you might need to be install the package in `Administrator` mode as in Windows, As only users with `SeCreateSymbolicLinkPrivilege` can create `Symbolic Links` which is granted only to administrators by default.
+Note: for Windows users, you might need to be install the package in `Administrator` mode. As on Windows only users with `SeCreateSymbolicLinkPrivilege` can create `Symbolic Links` which is granted only to administrators by default.
 
 ## Rules
 
