@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.1.2...v1.2.0) (2017-03-27)
+
+
+### Bug Fixes
+
+* **installer:** fix issue that installer was not being triggered. ([e50a6f8](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/e50a6f8))
+
+
+
 <a name="1.1.0"></a>
 ## [1.1.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.0.0...v1.1.1) (2017-03-27)
 
