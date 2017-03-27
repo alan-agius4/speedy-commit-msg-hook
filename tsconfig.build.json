@@ -5,6 +5,7 @@
 	},
 	"include": [
 		"src/index.ts",
+		"src/hook.ts",
 		"src/installer.ts"
 	]
 }
