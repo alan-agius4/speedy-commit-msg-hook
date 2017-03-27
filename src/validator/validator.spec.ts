@@ -1,122 +1,125 @@
-import { Rules, CommitMessagePart } from "../rules";
-import * as hook from "./validator";
+import * as _ from "lodash";
 
-xdescribe("validateSpec", () => {
+import * as config from "../config";
+import { Validator } from "./validator";
+
+describe("validateSpec", () => {
+	const CONFIG: config.ConfigData = {
+		"rules": {
+			"message": {
+				"noUnscoped": false
+			},
+			"type": {
+				"validTypes": [
+					"chore",
+					"feat"
+				]
+			},
+			"scope": {
+				"noDash": true
+			}
+		}
+	};
+
+	async function validateWrapper(commitMsg: string): Promise<undefined | string> {
+		try {
+			await Validator.validate(commitMsg);
+			return undefined;
+		} catch (error) {
+			return error;
+		}
+	}
+
 	beforeEach(() => {
-		spyOn(hook as any, "getCommitMsg").and.returnValue(() => Promise.resolve("abc"));
+		spyOn(config, "getConfigFilePath").and.stub();
 	});
 
-	const MESSAGE_PART: CommitMessagePart = "Type";
-	const COMMIT_MSG = "style(all): formatting";
+	describe(Validator.validate.name, () => {
+		describe("Given 'noUnscoped' is true", () => {
+			beforeEach(() => {
+				spyOn(config, "getConfig").and.returnValue(_.merge({}, CONFIG, {
+					rules: {
+						message: {
+							noUnscoped: true
+						}
+					}
+				}));
+			});
 
-	describe(Rules.noUnscoped.name, () => {
-		it("should fail when commit message is not scope", () => {
-			expect(Rules.noUnscoped("unscoped message").failed).toBe(true);
+			describe("and commit message is unscoped", () => {
+				it("should not be valid", async done => {
+					expect(await validateWrapper("changes in develop")).toMatch("Unscoped commit messages are not allowed");
+					done();
+				});
+			});
 		});
 
-		it("should not fail when commit message is not scope", () => {
-			expect(Rules.noUnscoped(COMMIT_MSG).failed).toBe(false);
+		describe("Given 'noUnscoped' is false", () => {
+			beforeEach(() => {
+				spyOn(config, "getConfig").and.returnValue(CONFIG);
+			});
+
+			describe("and commit message is unscoped", () => {
+				it("should be valid", async done => {
+					expect(await validateWrapper("changes in develop")).toBeUndefined();
+					done();
+				});
+			});
+
+			describe("and commit message has an invalid scope format", () => {
+				it("should not be valid 'invalid(scope):invalid'", async done => {
+					expect(await validateWrapper("invalid(scope):invalid")).toMatch("Commit message 'header' must be in this format");
+					done();
+				});
+
+				it("should not be valid 'invalid (scope):invalid'", async done => {
+					expect(await validateWrapper("invalid (scope):invalid")).toMatch("Commit message 'header' must be in this format");
+					done();
+				});
+			});
 		});
+
+		describe("Given 'validTypes' is set", () => {
+			beforeEach(() => {
+				spyOn(config, "getConfig").and.returnValue(CONFIG);
+			});
+
+			describe("and 'Type' is valid", () => {
+				it("should be valid", async done => {
+					expect(await validateWrapper("chore(scope): valid")).toBeUndefined();
+					done();
+				});
+			});
+
+			describe("and 'Type' is invalid", () => {
+				it("should not be valid", async done => {
+					expect(await validateWrapper("invalid(scope): invalid")).toMatch("Commit 'Type' is not valid.");
+					done();
+				});
+			});
+		});
+
+		describe("Given 'noDash' is set in 'scope'", () => {
+			beforeEach(() => {
+				spyOn(config, "getConfig").and.returnValue(CONFIG);
+			});
+
+			describe("and 'Scope' has no dash", () => {
+				it("should be valid", async done => {
+					expect(await validateWrapper("chore(scope service): valid")).toBeUndefined();
+					done();
+				});
+			});
+
+			describe("and 'Scope' has a dash", () => {
+				it("should not be valid", async done => {
+					expect(await validateWrapper("chore(scope-service): invalid")).toMatch("Commit 'Scope' cannot contain dashes");
+					done();
+				});
+			});
+		});
+
 	});
 
-	describe(Rules.maxLength.name, () => {
-		it("should fail when commit message length is exceeds the limit", () => {
-			expect(Rules.maxLength(COMMIT_MSG, MESSAGE_PART, 2).failed).toBe(true);
-		});
-
-		it("should not fail when commit message length is within the limit", () => {
-			expect(Rules.maxLength(COMMIT_MSG, MESSAGE_PART, 999).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.validTypes.name, () => {
-		it("should fail when 'type' is not valid", () => {
-			expect(Rules.validTypes(COMMIT_MSG, MESSAGE_PART, ["test", "refactor"]).failed).toBe(true);
-		});
-
-		it("should not fail when 'type' is valid", () => {
-			expect(Rules.validTypes(COMMIT_MSG, MESSAGE_PART, ["test", "style"]).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noDash.name, () => {
-		it("should fail when 'dash' is part of the string", () => {
-			expect(Rules.noDash("register-service", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when there is no 'dash' in the string", () => {
-			expect(Rules.noDash("register service", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noUnderscore.name, () => {
-		it("should fail when 'underscore' is part of the string", () => {
-			expect(Rules.noUnderscore("register_service", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when there is no 'underscore' in the string", () => {
-			expect(Rules.noUnderscore("register service", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noSpace.name, () => {
-		it("should fail when 'space' is part of the string", () => {
-			expect(Rules.noSpace("register service", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when there is no 'space' in the string", () => {
-			expect(Rules.noSpace("registerService", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noCamelCase.name, () => {
-		it("should fail when text is in CamelCase", () => {
-			expect(Rules.noCamelCase("registerService", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when text is not in CamelCase", () => {
-			expect(Rules.noCamelCase("register-service", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noKebabCase.name, () => {
-		it("should fail when text is in KebabCase", () => {
-			expect(Rules.noKebabCase("registe-service", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when text is not in KebabCase", () => {
-			expect(Rules.noKebabCase("registerService", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noUpperFirst.name, () => {
-		it("should fail when first character is UpperCase", () => {
-			expect(Rules.noUpperFirst("Register", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when first character is not UpperCase", () => {
-			expect(Rules.noUpperFirst("register", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noLowerFirst.name, () => {
-		it("should fail when first character is LowerCase", () => {
-			expect(Rules.noLowerFirst("register", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when first character is not LowerCase", () => {
-			expect(Rules.noLowerFirst("Register", MESSAGE_PART).failed).toBe(false);
-		});
-	});
-
-	describe(Rules.noPeriodAtEnd.name, () => {
-		it("should fail when last character is period", () => {
-			expect(Rules.noPeriodAtEnd("register.", MESSAGE_PART).failed).toBe(true);
-		});
-
-		it("should not fail when last character is not a period", () => {
-			expect(Rules.noPeriodAtEnd("register", MESSAGE_PART).failed).toBe(false);
-		});
-	});
 
 });
