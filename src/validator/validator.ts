@@ -45,7 +45,7 @@ export namespace Validator {
 				return;
 			}
 
-			const result = (_.get(Rules, key) as Function)
+			const result = (_.get(Rules, _.camelCase(key)) as Function)
 				.call(null, text, messagePart, value) as RulesResult;
 
 			if (result.failed) {

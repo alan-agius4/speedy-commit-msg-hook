@@ -7,16 +7,16 @@ describe("validateSpec", () => {
 	const CONFIG: config.ConfigData = {
 		"rules": {
 			"message": {
-				"noUnscoped": false
+				"no-unscoped": false
 			},
 			"type": {
-				"validTypes": [
+				"valid-types": [
 					"chore",
 					"feat"
 				]
 			},
 			"scope": {
-				"noDash": true
+				"no-dash": true
 			}
 		}
 	};

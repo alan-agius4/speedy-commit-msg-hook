@@ -1,11 +1,10 @@
 {
 	"rules": {
 		"message": {
-			"noUnscoped": false,
-			"maxLength": 75
+			"max-length": 75
 		},
 		"type": {
-			"validTypes": [
+			"valid-types": [
 				"amend",
 				"feat",
 				"fix",
@@ -19,14 +18,12 @@
 			]
 		},
 		"scope": {
-			"noSpace": false,
-			"noDash": true,
-			"noUnderscore": true
+			"no-dash": true,
+			"no-underscore": true
 		},
 		"subject": {
-			"noPeriodAtEnd": true,
-			"noUpperFirst": true,
-			"noLowerFirst": false
+			"no-period-at-end": true,
+			"no-upper-first": true
 		}
 	}
 }
