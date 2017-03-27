@@ -1,4 +1,4 @@
-import { lstatSync, Stats, renameSync, unlinkSync, symlinkSync } from "fs";
+import { mkdirSync, lstatSync, Stats, renameSync, unlinkSync, symlinkSync, existsSync } from "fs";
 import { join } from "path";
 
 import { findFileRecursively } from "./utils";
@@ -27,10 +27,14 @@ if (process.argv[2] === "uninstall") {
 }
 
 function install() {
-	uninstall();
+	if (existsSync(hooksPath)) {
+		uninstall();
 
-	if (fileStat && fileStat.isFile()) {
-		renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+		if (fileStat && fileStat.isFile()) {
+			renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+		}
+	} else {
+		mkdirSync(hooksPath);
 	}
 
 	symlinkSync(join(__dirname, "hook.js"), commitMsgHookPath);
