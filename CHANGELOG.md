@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.1.0...v1.1.1) (2017-03-27)
+
+
+### Features
+
+* **install:** fix auto install and uninstall ([df1cb4d](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/df1cb4d))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.0.1...v1.1.0) (2017-03-27)
 
