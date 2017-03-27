@@ -31,7 +31,7 @@
     "changelog": "./node_modules/.bin/conventional-changelog -p angular -i CHANGELOG.md -s",
     "preversion": "npm test",
     "version": "npm run build && npm run changelog",
-    "postversion": "git commit --all -m 'chore(all): update for release' && git push && git push --tags",
+    "postversion": "git commit --all -m \"chore(all): update for release\" && git push && git push --tags",
     "prepublish": "ts-node ./tools/modify-package",
     "postpublish": "git checkout ."
   },
