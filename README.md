@@ -11,7 +11,6 @@ Commit subject format:
 <type>(<scope>): <subject>
 ```
 
-
 ## Installation
 
 ```
