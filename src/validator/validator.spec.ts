@@ -5,17 +5,17 @@ import { Validator } from "./validator";
 
 describe("validateSpec", () => {
 	const CONFIG: config.ConfigData = {
-		"rules": {
-			"message": {
+		rules: {
+			message: {
 				"no-unscoped": false
 			},
-			"type": {
+			type: {
 				"valid-types": [
 					"chore",
 					"feat"
 				]
 			},
-			"scope": {
+			scope: {
 				"no-dash": true
 			}
 		}

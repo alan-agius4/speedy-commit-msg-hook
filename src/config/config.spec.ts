@@ -39,7 +39,7 @@ describe("getConfig", () => {
 	beforeEach(() => {
 		mockFs({
 			"speedy-commit-msg-hook.json": JSON.stringify(MAIN_FILE),
-			"config": {
+			config: {
 				"primary-extend.json": JSON.stringify(PRIMARY_EXTEND_FILE),
 				"secondary-extend.json": JSON.stringify(SECONDARY_EXTEND_FILE)
 			}
