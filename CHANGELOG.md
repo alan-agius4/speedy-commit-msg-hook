@@ -1,3 +1,13 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.3.0...v1.4.0) (2017-03-31)
+
+
+### Features
+
+* **utils:** remove utils and use `[@speedy](https://github.com/speedy)/node-core ([cbb9500](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/cbb9500))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.2.0...v1.3.0) (2017-03-27)
 
