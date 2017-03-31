@@ -1,9 +1,8 @@
 import { mkdirSync, lstatSync, Stats, renameSync, unlinkSync, symlinkSync, existsSync } from "fs";
 import { join } from "path";
+import { fileSystem } from "@speedy/node-core";
 
-import { findFileRecursively } from "./utils";
-
-const gitRoot = findFileRecursively(".git");
+const gitRoot = fileSystem.findFileRecursively(".git");
 
 if (!gitRoot) {
 	console.log("Not a GIT Repository");

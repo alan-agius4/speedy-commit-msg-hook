@@ -1,21 +1,25 @@
 import * as _ from "lodash";
+import { join } from "path";
+import { config, fileSystem } from "@speedy/node-core";
 
-import { getCommitMessage } from "../utils";
-import { Rules, RulesResult, CommitMessagePart, COMMIT_MESSAGE_PART } from "../rules";
-import { getConfigFilePath, getConfig } from "../config";
+import { rules, RulesResult, CommitMessagePart, COMMIT_MESSAGE_PART } from "../rules";
+import { ConfigData } from "../config.model";
 
-export namespace Validator {
+export namespace validator {
+
+	const DEFAULT_CONFIG_FILENAME = "speedy-commit-msg.json";
 
 	export async function validate(commitMessage?: string, configFilePath?: string) {
-		commitMessage = commitMessage || await getCommitMessage();
-		const config = await getConfig(getConfigFilePath(configFilePath || "speedy-commit-msg.json"));
-		const { type, message, scope, subject } = config.rules;
+		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_FILENAME, join("../../config", DEFAULT_CONFIG_FILENAME));
+		const configData = await config.readConfigFile<ConfigData>(configPath);
+		const { type, message, scope, subject } = configData.rules;
 
+		commitMessage = commitMessage || await getCommitMessage();
 		if (message) {
 			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, message);
 		}
 
-		if (!Rules.SCOPED_COMMIT_REGEXP.test(commitMessage)) {
+		if (!rules.SCOPED_COMMIT_REGEXP.test(commitMessage)) {
 			return;
 		}
 
@@ -45,12 +49,22 @@ export namespace Validator {
 				return;
 			}
 
-			const result = (_.get(Rules, _.camelCase(key)) as Function)
+			const result = (_.get(rules, _.camelCase(key)) as Function)
 				.call(null, text, messagePart, value) as RulesResult;
 
 			if (result.failed) {
 				throw new Error(result.message);
 			}
 		});
+	}
+
+	async function getCommitMessage(): Promise<string> {
+		const result = await fileSystem.readFileAsync(process.argv[2]);
+
+		if (!result) {
+			throw new Error("No commit message provided.");
+		}
+
+		return result.split("\n", 1)[0];
 	}
 }

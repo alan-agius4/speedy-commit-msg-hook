@@ -1,10 +1,11 @@
 import * as _ from "lodash";
+import { config } from "@speedy/node-core";
 
-import * as config from "../config";
-import { Validator } from "./validator";
+import { ConfigData } from "../config.model";
+import { validator } from "./validator";
 
 describe("validateSpec", () => {
-	const CONFIG: config.ConfigData = {
+	const CONFIG: ConfigData = {
 		rules: {
 			message: {
 				"no-unscoped": false
@@ -23,7 +24,7 @@ describe("validateSpec", () => {
 
 	async function validateWrapper(commitMsg: string): Promise<undefined | string> {
 		try {
-			await Validator.validate(commitMsg);
+			await validator.validate(commitMsg);
 			return undefined;
 		} catch (error) {
 			return error;
@@ -34,10 +35,10 @@ describe("validateSpec", () => {
 		spyOn(config, "getConfigFilePath").and.stub();
 	});
 
-	describe(Validator.validate.name, () => {
+	describe(validator.validate.name, () => {
 		describe("Given 'noUnscoped' is true", () => {
 			beforeEach(() => {
-				spyOn(config, "getConfig").and.returnValue(_.merge({}, CONFIG, {
+				spyOn(config, "readConfigFile").and.returnValue(_.merge({}, CONFIG, {
 					rules: {
 						message: {
 							noUnscoped: true
@@ -56,7 +57,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'noUnscoped' is false", () => {
 			beforeEach(() => {
-				spyOn(config, "getConfig").and.returnValue(CONFIG);
+				spyOn(config, "readConfigFile").and.returnValue(CONFIG);
 			});
 
 			describe("and commit message is unscoped", () => {
@@ -81,7 +82,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'validTypes' is set", () => {
 			beforeEach(() => {
-				spyOn(config, "getConfig").and.returnValue(CONFIG);
+				spyOn(config, "readConfigFile").and.returnValue(CONFIG);
 			});
 
 			describe("and 'Type' is valid", () => {
@@ -101,7 +102,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'noDash' is set in 'scope'", () => {
 			beforeEach(() => {
-				spyOn(config, "getConfig").and.returnValue(CONFIG);
+				spyOn(config, "readConfigFile").and.returnValue(CONFIG);
 			});
 
 			describe("and 'Scope' has no dash", () => {

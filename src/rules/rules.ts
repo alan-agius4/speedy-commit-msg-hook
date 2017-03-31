@@ -2,7 +2,7 @@ import * as _ from "lodash";
 
 import { RulesResult, CommitMessagePart } from "./rules.model";
 
-export namespace Rules {
+export namespace rules {
 
 	export const SCOPED_COMMIT_REGEXP = /[a-z]+[\s]?\(.+\):/;
 
