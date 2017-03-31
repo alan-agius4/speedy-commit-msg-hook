@@ -1,6 +1,10 @@
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.0...v1.4.1) (2017-03-31)
 
+### Bug Fixes
+
+* **installer:** fix installer hanging issues
+
 
 
 <a name="1.4.0"></a>
