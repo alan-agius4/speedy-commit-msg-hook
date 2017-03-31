@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { Validator } from "./validator";
+import { validator } from "./validator";
 
-Validator
+validator
 	.validate()
 	.catch(error => {
 		console.log(`\n${error}\n`);
