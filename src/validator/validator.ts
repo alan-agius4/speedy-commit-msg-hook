@@ -11,7 +11,7 @@ export namespace validator {
 
 	export async function validate(commitMessage?: string, configFilePath?: string) {
 		commitMessage = commitMessage || await getCommitMessage();
-		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_NAME, join("../../config", DEFAULT_CONFIG_NAME))
+		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_NAME, join("../../config", DEFAULT_CONFIG_NAME));
 		const configData = await config.readConfigFile<ConfigData>(configPath);
 		const { type, message, scope, subject } = configData.rules;
 
