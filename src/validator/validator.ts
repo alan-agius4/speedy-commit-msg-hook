@@ -7,14 +7,14 @@ import { ConfigData } from "../config.model";
 
 export namespace validator {
 
-	const DEFAULT_CONFIG_NAME = "speedy-commit-msg.json";
+	const DEFAULT_CONFIG_FILENAME = "speedy-commit-msg.json";
 
 	export async function validate(commitMessage?: string, configFilePath?: string) {
-		commitMessage = commitMessage || await getCommitMessage();
-		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_NAME, join("../../config", DEFAULT_CONFIG_NAME));
+		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_FILENAME, join("../../config", DEFAULT_CONFIG_FILENAME));
 		const configData = await config.readConfigFile<ConfigData>(configPath);
 		const { type, message, scope, subject } = configData.rules;
 
+		commitMessage = commitMessage || await getCommitMessage();
 		if (message) {
 			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, message);
 		}
