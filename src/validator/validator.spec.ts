@@ -6,17 +6,17 @@ import { validator } from "./validator";
 
 describe("validateSpec", () => {
 	const CONFIG: ConfigData = {
-		"rules": {
-			"message": {
+		rules: {
+			message: {
 				"no-unscoped": false
 			},
-			"type": {
+			type: {
 				"valid-types": [
 					"chore",
 					"feat"
 				]
 			},
-			"scope": {
+			scope: {
 				"no-dash": true
 			}
 		}
