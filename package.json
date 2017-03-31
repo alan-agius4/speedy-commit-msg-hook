@@ -1,6 +1,6 @@
 {
   "name": "@speedy/commit-msg-hook",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "GIT commit-msg validator hook",
   "main": "./dist/index.js",
   "repository": {
