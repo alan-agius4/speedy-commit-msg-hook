@@ -1,3 +1,13 @@
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.1...v1.4.2) (2017-03-31)
+
+
+### Bug Fixes
+
+* **validator:** fix config file path ([057719c](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/057719c))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.0...v1.4.1) (2017-03-31)
 
