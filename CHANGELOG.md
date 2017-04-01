@@ -1,3 +1,13 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.2...v1.5.0) (2017-04-01)
+
+
+### Bug Fixes
+
+* **hook:** hook is not being triggered on `Mac OS X` ([46e0ff8](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/46e0ff8))
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.1...v1.4.2) (2017-03-31)
 
