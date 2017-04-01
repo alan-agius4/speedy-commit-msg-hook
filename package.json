@@ -32,7 +32,7 @@
     "preversion": "npm test",
     "version": "npm run build && npm run changelog",
     "postversion": "git commit --all -m \"chore(all): update for release\" && git push && git push --tags",
-    "release": "ts-node ./tools/modify-package && npm publish"
+    "release": "ts-node ./tools/modify-package && npm publish && git checkout ."
   },
   "dependencies": {
     "@speedy/node-core": "^1.0.1",
