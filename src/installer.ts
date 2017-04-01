@@ -1,4 +1,4 @@
-import { mkdirSync, lstatSync, Stats, renameSync, unlinkSync, symlinkSync, existsSync } from "fs";
+import { mkdirSync, lstatSync, Stats, renameSync, constants, unlinkSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import { fileSystem } from "@speedy/node-core";
 
@@ -27,20 +27,23 @@ if (process.argv[2] === "uninstall") {
 
 function install() {
 	if (existsSync(hooksPath)) {
-		uninstall();
-
 		if (fileStat && fileStat.isFile()) {
 			renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+		} else {
+			uninstall();
 		}
 	} else {
 		mkdirSync(hooksPath);
 	}
 
-	symlinkSync(join(__dirname, "hook.js"), commitMsgHookPath);
+	const hookContent = `#!/usr/bin/env node
+						require("${join(__dirname, "hook.js")}");`;
+
+	writeFileSync(commitMsgHookPath, hookContent, { mode: constants.S_IRWXU });
 }
 
 function uninstall() {
-	if (fileStat && fileStat.isSymbolicLink()) {
+	if (fileStat) {
 		unlinkSync(commitMsgHookPath);
 	}
 }
