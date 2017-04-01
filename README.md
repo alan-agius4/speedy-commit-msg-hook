@@ -21,20 +21,21 @@ npm install @speedy/commit-msg-hook --save-dev
 
 The majority of the rules can be applied in any part of the configuration.
 
-| Name               | Description                                                      | Type     | Section |
-|--------------------|------------------------------------------------------------------|----------|---------|
-| `no-unscoped`      | Disallows unscoped commit messages                               | boolean  | Message |
-| `valid-types`      | An array of allowed commit message types ex: `["feat", "chore"]` | string[] | Type    |
-| `banned-phrases`   | An array of disallowed phrases. (Case insensitive)               | string[] | All     |
-| `max-length`       | Requires text to be under a certain max length                   | number   | All     |
-| `no-dash`          | Disallows dashes                                                 | boolean  | All     |
-| `no-space`         | Disallows spaces                                                 | boolean  | All     |
-| `no-underscore`    | Disallows underscores                                            | boolean  | All     |
-| `no-camel-case`    | Disallows camel cases                                            | boolean  | All     |
-| `no-kebab-case`    | Disallows kebab case                                             | boolean  | All     |
-| `no-upper-first`   | Enforces first character to be lower case                        | boolean  | All     |
-| `no-lower-first`   | Enforces first character to be upper case                        | boolean  | All     |
-| `no-period-at-end` | Enforces last character not to be a period                       | boolean  | All     |
+| Name               | Description                                                                              | Type     | Section |
+|--------------------|------------------------------------------------------------------------------------------|----------|---------|
+| `no-unscoped`      | Disallows unscoped commit messages                                                       | boolean  | Message |
+| `valid-types`      | An array of allowed commit message types ex: `["feat", "chore"]`                         | string[] | Type    |
+| `valid-scopes`     | An array of allowed commit message scopes ex: `["routers", "platform"]` (Case sensitive) | string[] | Scope   |
+| `banned-phrases`   | An array of disallowed phrases. (Case insensitive)                                       | string[] | All     |
+| `max-length`       | Requires text to be under a certain max length                                           | number   | All     |
+| `no-dash`          | Disallows dashes                                                                         | boolean  | All     |
+| `no-space`         | Disallows spaces                                                                         | boolean  | All     |
+| `no-underscore`    | Disallows underscores                                                                    | boolean  | All     |
+| `no-camel-case`    | Disallows camel cases                                                                    | boolean  | All     |
+| `no-kebab-case`    | Disallows kebab case                                                                     | boolean  | All     |
+| `no-upper-first`   | Enforces first character to be lower case                                                | boolean  | All     |
+| `no-lower-first`   | Enforces first character to be upper case                                                | boolean  | All     |
+| `no-period-at-end` | Enforces last character not to be a period                                               | boolean  | All     |
 
 ## Configuration
 

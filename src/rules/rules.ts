@@ -27,6 +27,13 @@ export namespace rules {
 		};
 	}
 
+	export function validScopes(text: string, part: CommitMessagePart, validScopes: string[]): RulesResult {
+		return {
+			failed: !new RegExp(`^(${validScopes.join("|")})$`).test(text),
+			message: `Commit '${part}' is not valid. Valid scopes are: ${validScopes.join(", ")}.`
+		};
+	}
+
 	export function validTypes(text: string, part: CommitMessagePart, validTypes: string[]): RulesResult {
 		return {
 			failed: !new RegExp(`^(${validTypes.join("|")})$`).test(text),
