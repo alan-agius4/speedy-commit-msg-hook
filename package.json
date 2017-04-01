@@ -32,10 +32,10 @@
     "preversion": "npm test",
     "version": "npm run build && npm run changelog",
     "postversion": "git commit --all -m \"chore(all): update for release\" && git push && git push --tags",
-    "release": "ts-node ./tools/modify-package && npm publish && git checkout ."
-  },
+    "release": "ts-node ./tools/modify-package ",
+    "install": "node ./dist/installer install"},
   "dependencies": {
-    "@speedy/node-core": "^1.0.0",
+    "@speedy/node-core": "^1.0.1",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
     "mock-fs": "^4.2.0",
     "rimraf": "^2.6.1",
     "ts-node": "^3.0.2",
-    "tslint": "^4.5.1",
+    "tslint": "^5.0.0",
     "typescript": "^2.2.0"
   },
   "typings": "dist/index.d.ts"
