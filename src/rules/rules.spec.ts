@@ -36,6 +36,18 @@ describe("rulesSpec", () => {
 		});
 	});
 
+	describe(rules.validScopes.name, () => {
+		const VALID_TYPES = ["router", "navigation"];
+
+		it("should fail when 'scope' is not valid", () => {
+			expect(rules.validScopes("router service", MESSAGE_PART, VALID_TYPES).failed).toBe(true);
+		});
+
+		it("should not fail when 'scope' is valid", () => {
+			expect(rules.validScopes("router", MESSAGE_PART, VALID_TYPES).failed).toBe(false);
+		});
+	});
+
 	describe(rules.validTypes.name, () => {
 		const VALID_TYPES = ["test", "refactor"];
 
