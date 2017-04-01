@@ -7,6 +7,11 @@
 * **hook:** hook is not being triggered on `Mac OS X` ([46e0ff8](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/46e0ff8))
 
 
+### Features
+
+* **rules:** add `valid-scopes` rule ([2af6eae](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/2af6eae))
+
+
 
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.1...v1.4.2) (2017-03-31)
@@ -33,7 +38,7 @@
 
 ### Features
 
-* **utils:** remove utils and use `[@speedy](https://github.com/speedy)/node-core ([cbb9500](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/cbb9500))
+* **utils:** remove utils and use `@speedy/node-core` ([cbb9500](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/cbb9500))
 
 
 
