@@ -12,7 +12,7 @@ export namespace validator {
 	export async function validate(commitMessage?: string, configFilePath?: string) {
 		const configPath = config.getConfigFilePath(
 			configFilePath || DEFAULT_CONFIG_FILENAME,
-			join(__dirname, "../../config", DEFAULT_CONFIG_FILENAME)
+			join(__dirname, "../../config")
 		);
 		const configData = await config.readConfigFile<ConfigData>(configPath);
 		const { type, message, scope, subject } = configData.rules;

@@ -1,5 +1,5 @@
 import { mkdirSync, lstatSync, Stats, renameSync, constants, unlinkSync, writeFileSync, existsSync } from "fs";
-import { join, resolve } from "path";
+import { join } from "path";
 import { fileSystem } from "@speedy/node-core";
 
 const gitRoot = fileSystem.findFileRecursively(".git");
@@ -29,15 +29,15 @@ function install() {
 	if (existsSync(hooksPath)) {
 		if (fileStat && fileStat.isFile()) {
 			renameSync(commitMsgHookPath, `${commitMsgHookPath}.backup`);
+		} else {
+			uninstall();
 		}
-
-		uninstall();
 	} else {
 		mkdirSync(hooksPath);
 	}
 
 	const hookContent = `#!/usr/bin/env node
-						require("${resolve(commitMsgHookPath, __dirname, "hook.js")}");`;
+						require("${join(__dirname, "hook.js")}");`;
 
 	writeFileSync(commitMsgHookPath, hookContent, { mode: constants.S_IRWXU });
 }
