@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import { join } from "path";
 import { config, fileSystem } from "@speedy/node-core";
+import { json } from "@speedy/json-extends";
 
 import { rules, RulesResult, CommitMessagePart, COMMIT_MESSAGE_PART } from "../rules";
 import { ConfigData } from "../config.model";
@@ -8,13 +9,13 @@ import { ConfigData } from "../config.model";
 export namespace validator {
 
 	const DEFAULT_CONFIG_FILENAME = "speedy-commit-msg.json";
+	const INTERNAL_CONFIG_LOCATION = join(__dirname, "../../config");
 
 	export async function validate(commitMessage?: string, configFilePath?: string) {
-		const configPath = config.getConfigFilePath(
-			configFilePath || DEFAULT_CONFIG_FILENAME,
-			join(__dirname, "../../config")
-		);
-		const configData = await config.readConfigFile<ConfigData>(configPath);
+		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_FILENAME, INTERNAL_CONFIG_LOCATION);
+		const configData = json.readSync<ConfigData>(configPath, {
+			"@speedy/commit-msg-hook:latest": join(INTERNAL_CONFIG_LOCATION, DEFAULT_CONFIG_FILENAME)
+		});
 		const { type, message, scope, subject } = configData.rules;
 
 		commitMessage = commitMessage || await getCommitMessage();

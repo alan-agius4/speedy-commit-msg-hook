@@ -93,7 +93,7 @@ Configuration can be extended with one or many existing configurations.
 ```json
 {
   "extends": [
-    "./node_modules/@speedy/commit-msg-hook/config/speedy-commit-msg.json"
+    "@speedy/commit-msg-hook:latest"
   ],
   "rules": {
     "message": {
