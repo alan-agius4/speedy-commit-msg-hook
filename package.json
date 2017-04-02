@@ -12,6 +12,7 @@
     "git",
     "commit",
     "message",
+    "hook",
     "validator",
     "commit-msg"
   ],
