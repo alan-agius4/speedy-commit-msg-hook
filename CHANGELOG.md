@@ -4,7 +4,7 @@
 
 ### Features
 
-* **config:** added a named extends for our latest rules `[@speedy](https://github.com/speedy)/commit-msg-hook:latest` ([48c30df](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/48c30df))
+* **config:** added a named extends for our latest rules `@speedy/commit-msg-hook:latest` ([48c30df](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/48c30df))
 
 
 
