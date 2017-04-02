@@ -35,6 +35,7 @@
     "release": "ts-node ./tools/modify-package && npm publish && git checkout ."
   },
   "dependencies": {
+    "@speedy/json-extends": "^1.1.1",
     "@speedy/node-core": "^1.0.1",
     "lodash": "^4.17.4"
   },
