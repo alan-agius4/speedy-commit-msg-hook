@@ -1,3 +1,13 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.5.0...v1.6.0) (2017-04-02)
+
+
+### Features
+
+* **config:** added a named extends for our latest rules `[@speedy](https://github.com/speedy)/commit-msg-hook:latest` ([48c30df](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/48c30df))
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.4.2...v1.5.0) (2017-04-01)
 
