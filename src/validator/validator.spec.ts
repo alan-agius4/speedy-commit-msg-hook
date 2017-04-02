@@ -39,7 +39,7 @@ describe("validateSpec", () => {
 	describe(validator.validate.name, () => {
 		describe("Given 'noUnscoped' is true", () => {
 			beforeEach(() => {
-				spyOn(json, "read").and.returnValue(_.merge({}, CONFIG, {
+				spyOn(json, "readSync").and.returnValue(_.merge({}, CONFIG, {
 					rules: {
 						message: {
 							noUnscoped: true
@@ -58,7 +58,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'noUnscoped' is false", () => {
 			beforeEach(() => {
-				spyOn(json, "read").and.returnValue(CONFIG);
+				spyOn(json, "readSync").and.returnValue(CONFIG);
 			});
 
 			describe("and commit message is unscoped", () => {
@@ -83,7 +83,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'validTypes' is set", () => {
 			beforeEach(() => {
-				spyOn(json, "read").and.returnValue(CONFIG);
+				spyOn(json, "readSync").and.returnValue(CONFIG);
 			});
 
 			describe("and 'Type' is valid", () => {
@@ -103,7 +103,7 @@ describe("validateSpec", () => {
 
 		describe("Given 'noDash' is set in 'scope'", () => {
 			beforeEach(() => {
-				spyOn(json, "read").and.returnValue(CONFIG);
+				spyOn(json, "readSync").and.returnValue(CONFIG);
 			});
 
 			describe("and 'Scope' has no dash", () => {

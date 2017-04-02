@@ -9,14 +9,12 @@ import { ConfigData } from "../config.model";
 export namespace validator {
 
 	const DEFAULT_CONFIG_FILENAME = "speedy-commit-msg.json";
+	const INTERNAL_CONFIG_LOCATION = join(__dirname, "../../config");
 
 	export async function validate(commitMessage?: string, configFilePath?: string) {
-		const configPath = config.getConfigFilePath(
-			configFilePath || DEFAULT_CONFIG_FILENAME,
-			join(__dirname, "../../config")
-		);
+		const configPath = config.getConfigFilePath(configFilePath || DEFAULT_CONFIG_FILENAME, INTERNAL_CONFIG_LOCATION);
 		const configData = json.readSync<ConfigData>(configPath, {
-			"@speedy/commit-msg-hook:latest": "./node_modules/@speedy/commit-msg-hook/config/speedy-commit-msg.json"
+			"@speedy/commit-msg-hook:latest": join(INTERNAL_CONFIG_LOCATION, DEFAULT_CONFIG_FILENAME)
 		});
 		const { type, message, scope, subject } = configData.rules;
 
