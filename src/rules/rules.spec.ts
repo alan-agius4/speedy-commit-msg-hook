@@ -50,6 +50,10 @@ describe("rulesSpec", () => {
 		it("should not fail when 'scope' is valid", () => {
 			expect(rules.validScopes("router", MESSAGE_PART, VALID_SCOPES).failed).toBe(false);
 		});
+
+		it("should fail when 'scope' is partially matches", () => {
+			expect(rules.validScopes("router2", MESSAGE_PART, VALID_SCOPES).failed).toBe(true);
+		});
 	});
 
 	describe(rules.validTypes.name, () => {
@@ -61,6 +65,11 @@ describe("rulesSpec", () => {
 
 		it("should not fail when 'type' is valid", () => {
 			expect(rules.validTypes("test", MESSAGE_PART, VALID_TYPES).failed).toBe(false);
+		});
+
+
+		it("should fail when 'type' partially matches", () => {
+			expect(rules.validTypes("test2", MESSAGE_PART, VALID_TYPES).failed).toBe(true);
 		});
 	});
 
