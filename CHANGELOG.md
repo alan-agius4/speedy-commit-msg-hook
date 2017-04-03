@@ -1,3 +1,18 @@
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.0...v1.6.1) (2017-04-03)
+
+
+### Bug Fixes
+
+* **installer:** on `windows` require must contain only forward slashes ([13337cf](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/13337cf))
+
+
+### Features
+
+* **config:** added a named extends for our latest rules `[@speedy](https://github.com/speedy)/commit-msg-hook:latest` ([64b0a17](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/64b0a17))
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.5.0...v1.6.0) (2017-04-02)
 
