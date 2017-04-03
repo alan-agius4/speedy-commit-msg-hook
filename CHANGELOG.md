@@ -5,7 +5,6 @@
 ### Bug Fixes
 
 * **rules:** when `type` contains numeric characters sometimes it get marked as valid ([cd891e1](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/cd891e1))
-* **rules:** when `type` contains numeric characters sometimes it get marked as valid ([5ed8149](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/5ed8149))
 
 
 
