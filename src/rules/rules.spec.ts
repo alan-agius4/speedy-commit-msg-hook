@@ -21,6 +21,10 @@ describe("rulesSpec", () => {
 			expect(rules.noUnscoped("unscoped message").failed).toBe(true);
 		});
 
+		it("should not fail when commit message is scoped but contains alphanumeric", () => {
+			expect(rules.noUnscoped("chore2(build): scripts").failed).toBe(false);
+		});
+
 		it("should not fail when commit message is not scope", () => {
 			expect(rules.noUnscoped(COMMIT_MSG).failed).toBe(false);
 		});

@@ -4,7 +4,7 @@ import { RulesResult, CommitMessagePart } from "./rules.model";
 
 export namespace rules {
 
-	export const SCOPED_COMMIT_REGEXP = /[a-z]+[\s]?\(.+\):/;
+	export const SCOPED_COMMIT_REGEXP = /(.+)\(.*\)\s?:/;
 
 	export function bannedPhrases(text: string, part: CommitMessagePart, bannedPhrases: string[]): RulesResult {
 		return {
