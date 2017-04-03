@@ -1,5 +1,5 @@
 import { mkdirSync, lstatSync, Stats, renameSync, constants, unlinkSync, writeFileSync, existsSync } from "fs";
-import { join } from "path";
+import * as path from "path";
 import { fileSystem } from "@speedy/node-core";
 
 const gitRoot = fileSystem.findFileRecursively(".git");
@@ -9,8 +9,8 @@ if (!gitRoot) {
 	process.exit(0);
 }
 
-const hooksPath = join(gitRoot!, ".git", "hooks");
-const commitMsgHookPath = join(hooksPath, "commit-msg");
+const hooksPath = path.join(gitRoot!, ".git", "hooks");
+const commitMsgHookPath = path.join(hooksPath, "commit-msg");
 let fileStat: Stats | undefined;
 
 try {
@@ -36,8 +36,10 @@ function install() {
 		mkdirSync(hooksPath);
 	}
 
+	// windows require must contain only forward slashes
+	const hookPath = path.join(__dirname, "hook.js").split(path.sep).join("/");
 	const hookContent = `#!/usr/bin/env node
-						require("${join(__dirname, "hook.js")}");`;
+						require("${hookPath}");`;
 
 	writeFileSync(commitMsgHookPath, hookContent, { mode: constants.S_IRWXU });
 }
