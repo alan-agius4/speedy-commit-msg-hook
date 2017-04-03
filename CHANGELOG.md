@@ -1,3 +1,14 @@
+<a name="1.6.2"></a>
+## [1.6.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.1...v1.6.2) (2017-04-03)
+
+
+### Bug Fixes
+
+* **rules:** when `type` contains numeric characters sometimes it get marked as valid ([cd891e1](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/cd891e1))
+* **rules:** when `type` contains numeric characters sometimes it get marked as valid ([5ed8149](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/5ed8149))
+
+
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.0...v1.6.1) (2017-04-03)
 
