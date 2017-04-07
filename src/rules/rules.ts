@@ -4,6 +4,7 @@ import { RulesResult, CommitMessagePart } from "./rules.model";
 
 export namespace rules {
 
+	export const SKIP_VALIDATION_RULE_KEY = "skip-validation";
 	export const SCOPED_COMMIT_REGEXP = /(.+)\(.*\)\s?:/;
 
 	export function bannedPhrases(text: string, part: CommitMessagePart, bannedPhrases: string[]): RulesResult {
@@ -11,6 +12,10 @@ export namespace rules {
 			failed: new RegExp(`(${bannedPhrases.join("|")})`, "ig").test(text),
 			message: `Commit '${part}' is not valid. You are using a 'Banned Phrase'. Banned phrases are: ${bannedPhrases.join(", ")}.`
 		};
+	}
+
+	export function skipValidation(text: string, skipValidationValue: string | undefined): boolean {
+		return !!skipValidationValue && new RegExp(skipValidationValue).test(text);
 	}
 
 	export function noUnscoped(text: string): RulesResult {

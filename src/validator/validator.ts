@@ -20,6 +20,11 @@ export namespace validator {
 
 		commitMessage = commitMessage || await getCommitMessage();
 		if (message) {
+			// skip validation for certain commit messages
+			if (rules.skipValidation(commitMessage, message[rules.SKIP_VALIDATION_RULE_KEY])) {
+				return;
+			}
+
 			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, message);
 		}
 
@@ -56,7 +61,7 @@ export namespace validator {
 			const result = (_.get(rules, _.camelCase(key)) as Function)
 				.call(null, text, messagePart, value) as RulesResult;
 
-			if (result.failed) {
+			if (_.isObject(result) && result.failed) {
 				throw new Error(result.message);
 			}
 		});

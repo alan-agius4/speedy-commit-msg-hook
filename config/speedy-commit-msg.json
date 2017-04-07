@@ -1,6 +1,7 @@
 {
 	"rules": {
 		"message": {
+			"skip-validation": "^(Merge|Revert)\\s",
 			"max-length": 75,
 			"banned-phrases": [
 				"minor change",
