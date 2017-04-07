@@ -1,3 +1,13 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.2...v1.7.0) (2017-04-07)
+
+
+### Features
+
+* **rules:** add new rule `skip-validation` ([ce0bf00](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/ce0bf00))
+
+
+
 <a name="1.6.2"></a>
 ## [1.6.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.1...v1.6.2) (2017-04-03)
 
