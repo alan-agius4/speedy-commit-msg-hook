@@ -20,7 +20,7 @@ npm install @speedy/commit-msg-hook --save-dev
 ## Rules
 
 The majority of the rules can be applied in any part of the configuration.
-skip-validation
+
 | Name               | Description                                                                                            | Type     | Section |
 |--------------------|--------------------------------------------------------------------------------------------------------|----------|---------|
 | `no-unscoped`      | Disallows unscoped commit messages                                                                     | boolean  | Message |
