@@ -7,7 +7,7 @@ import { rules, RulesResult, CommitMessagePart, COMMIT_MESSAGE_PART } from "../r
 import { ConfigData } from "../config.model";
 
 export namespace validator {
-
+	const SKIP_VALIDATION_KEY = "skip-validation";
 	const DEFAULT_CONFIG_FILENAME = "speedy-commit-msg.json";
 	const INTERNAL_CONFIG_LOCATION = join(__dirname, "../../config");
 
@@ -20,7 +20,13 @@ export namespace validator {
 
 		commitMessage = commitMessage || await getCommitMessage();
 		if (message) {
-			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, message);
+			// skip validation for certain commit messages
+			const skipValidationRegExp = message[SKIP_VALIDATION_KEY];
+			if (skipValidationRegExp && new RegExp(skipValidationRegExp).test(commitMessage)) {
+				return;
+			}
+
+			validatePart(commitMessage, COMMIT_MESSAGE_PART.Message, _.omit(message, SKIP_VALIDATION_KEY));
 		}
 
 		if (!rules.SCOPED_COMMIT_REGEXP.test(commitMessage)) {
