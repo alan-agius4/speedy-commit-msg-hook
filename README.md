@@ -24,7 +24,7 @@ The majority of the rules can be applied in any part of the configuration.
 | Name               | Description                                                                                            | Type     | Section |
 |--------------------|--------------------------------------------------------------------------------------------------------|----------|---------|
 | `no-unscoped`      | Disallows unscoped commit messages                                                                     | boolean  | Message |
-| `skip-validation`  | Disable validation for commit messages matching a RegExp (This is useful for Merge and Revert Commits) | RegExp   | Message |
+| `skip-validation`  | Disable validation for commit messages matching a RegExp. Useful for `Merge` and `Revert` commits)     | RegExp   | Message |
 | `valid-types`      | An array of allowed commit message types ex: `["feat", "chore"]`                                       | string[] | Type    |
 | `valid-scopes`     | An array of allowed commit message scopes ex: `["routers", "platform"]` (Case sensitive)               | string[] | Scope   |
 | `banned-phrases`   | An array of disallowed phrases. (Case insensitive)                                                     | string[] | All     |
