@@ -14,8 +14,8 @@ export namespace rules {
 		};
 	}
 
-	export function skipValidation(text: string, skipValidationValue: string | undefined): boolean {
-		return !!skipValidationValue && new RegExp(skipValidationValue).test(text);
+	export function skipValidation(text: string, skipValidationPattern: string | undefined): boolean {
+		return !!skipValidationPattern && new RegExp(skipValidationPattern).test(text);
 	}
 
 	export function noUnscoped(text: string): RulesResult {
