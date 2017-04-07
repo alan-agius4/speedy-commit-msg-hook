@@ -16,6 +16,16 @@ describe("rulesSpec", () => {
 		});
 	});
 
+	describe(rules.skipValidation.name, () => {
+		it("should return true when commit message matches a skip validation rule", () => {
+			expect(rules.skipValidation("Merge with master", "^(Merge|Revert)\\s")).toBe(true);
+		});
+
+		it("should return false when commit message doesn't match a skip validation rule", () => {
+			expect(rules.skipValidation("Merge with master", undefined)).toBe(false);
+		});
+	});
+
 	describe(rules.noUnscoped.name, () => {
 		it("should fail when commit message is not scope", () => {
 			expect(rules.noUnscoped("unscoped message").failed).toBe(true);
