@@ -1,3 +1,13 @@
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.7.0...v1.7.1) (2017-04-15)
+
+
+### Features
+
+* **config:** update `message` default rules ([75c18e5](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/75c18e5))
+
+
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.6.2...v1.7.0) (2017-04-07)
 
