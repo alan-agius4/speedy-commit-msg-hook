@@ -61,7 +61,9 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
         "pr change",
         "pr comment",
         "following pr"
-      ]
+      ],
+      "no-period-at-end": true,
+      "no-upper-first": true
     },
     "type": {
       "valid-types": [

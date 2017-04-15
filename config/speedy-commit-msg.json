@@ -10,7 +10,9 @@
 				"pr change",
 				"pr comment",
 				"following pr"
-			]
+			],
+			"no-period-at-end": true,
+			"no-upper-first": true
 		},
 		"type": {
 			"valid-types": [
