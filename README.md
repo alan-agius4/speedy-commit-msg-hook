@@ -53,7 +53,7 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
   "rules": {
     "message": {
       "skip-validation": "^(Merge|Revert)\\s",
-      "max-length": 75,
+      "max-length": 100,
       "banned-phrases": [
         "minor change",
         "minor fix",
