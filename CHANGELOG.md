@@ -1,3 +1,13 @@
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.7.1...v1.8.0) (2017-04-21)
+
+
+### Features
+
+* **config:** increase message `max-length` to 100 characters ([f618950](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/f618950))
+
+
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.7.0...v1.7.1) (2017-04-15)
 
