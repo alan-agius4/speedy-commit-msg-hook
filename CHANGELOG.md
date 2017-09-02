@@ -1,3 +1,13 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.8.0...v1.8.1) (2017-09-02)
+
+
+### Bug Fixes
+
+* **hook:** replace `console.log` with `console.error` ([fe8c638](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/fe8c638))
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.7.1...v1.8.0) (2017-04-21)
 
