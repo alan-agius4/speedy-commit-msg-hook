@@ -53,7 +53,7 @@ export namespace validator {
 	}
 
 	export function validatePart(text: string, messagePart: CommitMessagePart, options: any) {
-		_.forEach(options, (value, key: string) => {
+		_.forEach(options, (value: boolean | string, key: string) => {
 			if (value === false) {
 				return;
 			}
