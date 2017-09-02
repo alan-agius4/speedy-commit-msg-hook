@@ -7,10 +7,10 @@ export namespace rules {
 	export const SKIP_VALIDATION_RULE_KEY = "skip-validation";
 	export const SCOPED_COMMIT_REGEXP = /(.+)\(.*\)\s?:/;
 
-	export function bannedPhrases(text: string, part: CommitMessagePart, bannedPhrases: string[]): RulesResult {
+	export function bannedPhrases(text: string, part: CommitMessagePart, phrases: string[]): RulesResult {
 		return {
-			failed: new RegExp(`(${bannedPhrases.join("|")})`, "ig").test(text),
-			message: `Commit '${part}' is not valid. You are using a 'Banned Phrase'. Banned phrases are: ${bannedPhrases.join(", ")}.`
+			failed: new RegExp(`(${phrases.join("|")})`, "ig").test(text),
+			message: `Commit '${part}' is not valid. You are using a 'Banned Phrase'. Banned phrases are: ${phrases.join(", ")}.`
 		};
 	}
 
@@ -25,24 +25,24 @@ export namespace rules {
 		};
 	}
 
-	export function maxLength(text: string, part: CommitMessagePart, maxLength: number): RulesResult {
+	export function maxLength(text: string, part: CommitMessagePart, maximumLength: number): RulesResult {
 		return {
-			failed: maxLength < text.length,
-			message: `Commit '${part}' cannot exceed ${maxLength} characters.`
+			failed: maximumLength < text.length,
+			message: `Commit '${part}' cannot exceed ${maximumLength} characters.`
 		};
 	}
 
-	export function validScopes(text: string, part: CommitMessagePart, validScopes: string[]): RulesResult {
+	export function validScopes(text: string, part: CommitMessagePart, scopes: string[]): RulesResult {
 		return {
-			failed: !new RegExp(`^(${validScopes.join("|")})$`).test(text),
-			message: `Commit '${part}' is not valid. Valid scopes are: ${validScopes.join(", ")}.`
+			failed: !new RegExp(`^(${scopes.join("|")})$`).test(text),
+			message: `Commit '${part}' is not valid. Valid scopes are: ${scopes.join(", ")}.`
 		};
 	}
 
-	export function validTypes(text: string, part: CommitMessagePart, validTypes: string[]): RulesResult {
+	export function validTypes(text: string, part: CommitMessagePart, types: string[]): RulesResult {
 		return {
-			failed: !new RegExp(`^(${validTypes.join("|")})$`).test(text),
-			message: `Commit '${part}' is not valid. Valid types are: ${validTypes.join(", ")}.`
+			failed: !new RegExp(`^(${types.join("|")})$`).test(text),
+			message: `Commit '${part}' is not valid. Valid types are: ${types.join(", ")}.`
 		};
 	}
 
