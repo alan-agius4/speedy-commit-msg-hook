@@ -1,19 +1,24 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/speedy
     docker:
       - image: circleci/node:6.10
     steps:
       - checkout
       - run:
           name: Update npm
-          command: 'sudo npm install -g npm@latest'
+          command: sudo npm install -g npm@latest
       - restore_cache:
-          key: speed-commit-msg-hook-{{ checksum "package.json" }}
-      - run: npm install
-      - run: npm run build
+          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Install npm packages
+          command: npm install
+      - run: 
+          name: Build
+          command: npm run build
       - save_cache:
-          key: speed-commit-msg-hook-{{ checksum "package.json" }}
+          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
   test:
@@ -23,9 +28,11 @@ jobs:
       - checkout
       - run: sudo npm install -g npm@3.x.x
       - restore_cache:
-          key: speed-commit-msg-hook-{{ checksum "package.json" }}
+          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
       - run: npm install
-      - run: npm test
+      - run: 
+          name: Test
+          command: npm test
       - save_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
           paths:
