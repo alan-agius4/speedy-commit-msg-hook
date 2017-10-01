@@ -5,7 +5,9 @@ jobs:
       - image: circleci/node:6.10
     steps:
       - checkout
-      - run: sudo npm install -g npm@3.x.x
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm install
@@ -17,7 +19,6 @@ jobs:
   test:
     docker:
       - image: circleci/node:6.10
-    steps:
     steps:
       - checkout
       - run: sudo npm install -g npm@3.x.x
