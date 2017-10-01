@@ -5,7 +5,7 @@ jobs:
       - image: node:8.6
     steps:
       - checkout
-      - run: sudo npm install -g npm@5.x.x
+      - run: npm install -g npm@5.x.x
       - restore_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm install
