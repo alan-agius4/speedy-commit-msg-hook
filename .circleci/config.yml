@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:7
     steps:
       - checkout
-      - run: sudo npm install -g npm@3.x.x
+      - run: sudo npm install -g npm@4.x.x
       - restore_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm install
@@ -20,7 +20,7 @@ jobs:
     steps:
     steps:
       - checkout
-      - run: sudo npm install -g npm@3.x.x
+      - run: sudo npm install -g npm@4.x.x
       - restore_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm install
