@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:4.8.3
     steps:
       - checkout
       - run: sudo npm install -g npm@3.x.x
@@ -16,7 +16,7 @@ jobs:
             - node_modules
   test:
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:4.8.3
     steps:
     steps:
       - checkout
