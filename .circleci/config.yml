@@ -7,15 +7,15 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
-          name: Install npm packages
+          name: Installing npm packages
           command: npm install
       - run: 
           name: Build
           command: npm run build
       - save_cache:
-          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
   test:
@@ -24,15 +24,15 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
-          name: Install npm packages
+          name: Installing npm packages
           command: npm install
       - run: 
           name: Test
           command: npm t
       - save_cache:
-          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
 
