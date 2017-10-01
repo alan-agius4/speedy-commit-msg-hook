@@ -18,10 +18,17 @@ jobs:
     docker:
       - image: circleci/node:6.10.3
     steps:
+    steps:
       - checkout
+      - run: sudo npm install -g npm@3.x.x
       - restore_cache:
           key: speed-commit-msg-hook-{{ checksum "package.json" }}
+      - run: npm install
       - run: npm test
+      - save_cache:
+          key: speed-commit-msg-hook-{{ checksum "package.json" }}
+          paths:
+            - node_modules
 
 workflows:
   version: 2
