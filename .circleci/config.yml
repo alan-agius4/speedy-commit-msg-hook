@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speedy-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Installing npm packages
           command: npm install
@@ -15,7 +15,7 @@ jobs:
           name: Build
           command: npm run build
       - save_cache:
-          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speedy-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
   test:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speedy-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           name: Installing npm packages
           command: npm install
@@ -32,7 +32,7 @@ jobs:
           name: Test
           command: npm t
       - save_cache:
-          key: speed-{{ .Branch }}-{{ checksum "package.json" }}
+          key: speedy-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
 
