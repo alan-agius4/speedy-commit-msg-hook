@@ -35,18 +35,6 @@ jobs:
           key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - checkout
-      - run: sudo npm install -g npm@3.x.x
-      - restore_cache:
-          key: speed-commit-msg-hook-{{ .Branch }}-{{ checksum "package.json" }}
-      - run: npm install
-      - run: 
-          name: Test
-          command: npm test
-      - save_cache:
-          key: speed-commit-msg-hook-{{ checksum "package.json" }}
-          paths:
-            - node_modules
 
 workflows:
   version: 2
