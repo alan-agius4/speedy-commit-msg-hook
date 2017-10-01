@@ -7,11 +7,11 @@ jobs:
       - checkout
       - run: sudo npm install -g npm@3.x.x
       - restore_cache:
-          key: speed-commit-msg-hook-{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm install
       - run: npm run build
       - save_cache:
-          key: speed-commit-msg-hook-{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-commit-msg-hook-{{ checksum "package.json" }}
           paths:
             - node_modules
   test:
@@ -20,7 +20,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: speed-commit-msg-hook-{ .Branch }}-{{ checksum "package.json" }}
+          key: speed-commit-msg-hook-{{ checksum "package.json" }}
       - run: npm test
 
 workflows:
