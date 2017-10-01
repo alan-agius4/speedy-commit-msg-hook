@@ -1,6 +1,7 @@
 node_modules
 /.idea
 /.vscode
+/.circleci
 /tools
 /typings
 /src
@@ -11,7 +12,6 @@ node_modules
 .DS_Store
 .npmignore
 .editorconfig
-circle.yml
 jasmine.json
 jsconfig.json
 karma.conf.js
