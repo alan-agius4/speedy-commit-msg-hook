@@ -5,11 +5,17 @@ import { fileSystem } from "@speedy/node-core";
 const gitRoot = fileSystem.findFileRecursively(".git");
 
 if (!gitRoot) {
-	console.log("Not a GIT Repository");
-	process.exit(0);
+	console.error("Not a GIT Repository");
+	process.exit();
 }
 
-const hooksPath = path.join(gitRoot!, ".git", "hooks");
+const gitPath = path.join(gitRoot!, ".git");
+if (!lstatSync(gitPath).isDirectory()) {
+	console.warn(".git is not a folder. Commit message hook will not be installed.");
+	process.exit();
+}
+
+const hooksPath = path.join(gitPath, "hooks");
 const commitMsgHookPath = path.join(hooksPath, "commit-msg");
 let fileStat: Stats | undefined;
 
