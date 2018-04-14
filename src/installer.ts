@@ -5,7 +5,7 @@ import { fileSystem } from "@speedy/node-core";
 const gitRoot = fileSystem.findFileRecursively(".git");
 
 if (!gitRoot) {
-	console.error("Not a GIT Repository");
+	console.warn("Not a GIT Repository");
 	process.exit();
 }
 
