@@ -1,3 +1,13 @@
+<a name="1.8.2"></a>
+## [1.8.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.8.1...v1.8.2) (2018-04-14)
+
+
+### Bug Fixes
+
+* **installer:** installation if throwing a fatal error when installing in a git worktree ([81ee99d](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/81ee99d)), closes [#15](https://github.com/alan-agius4/speedy-commit-msg-hook/issues/15)
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.8.0...v1.8.1) (2017-09-02)
 
