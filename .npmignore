@@ -22,3 +22,4 @@ tsconfig.test.json
 yarn.lock
 *.tgz
 npm-debug.*
+renovate.json
