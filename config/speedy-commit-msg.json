@@ -16,7 +16,6 @@
 		},
 		"type": {
 			"valid-types": [
-				"amend",
 				"feat",
 				"fix",
 				"docs",
