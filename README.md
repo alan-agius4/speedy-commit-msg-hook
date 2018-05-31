@@ -26,7 +26,7 @@ The majority of the rules can be applied in any part of the configuration.
 | `no-unscoped`      | Disallows unscoped commit messages                                                                     | boolean  | Message |
 | `skip-validation`  | Disable validation for commit messages matching a RegExp. Useful for `Merge` and `Revert` commits)     | RegExp   | Message |
 | `valid-types`      | An array of allowed commit message types ex: `["feat", "chore"]`                                       | string[] | Type    |
-| `valid-scopes`     | An array of allowed commit message scopes ex: `["router", "platform"]` (Case sensitive)               | string[] | Scope   |
+| `valid-scopes`     | An array of allowed commit message scopes ex: `["router", "platform"]` (Case sensitive)                | string[] | Scope   |
 | `banned-phrases`   | An array of disallowed phrases. (Case insensitive)                                                     | string[] | All     |
 | `max-length`       | Requires text to be under a certain max length                                                         | number   | All     |
 | `no-dash`          | Disallows dashes                                                                                       | boolean  | All     |
@@ -52,7 +52,7 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
 {
   "rules": {
     "message": {
-      "skip-validation": "^(Merge|Revert)\\s",
+      "skip-validation": "^(Merge)\\s",
       "max-length": 100,
       "banned-phrases": [
         "minor change",
@@ -67,7 +67,6 @@ If the file is not found it will fallback to an internal `speedy-commit-msg.json
     },
     "type": {
       "valid-types": [
-        "amend",
         "feat",
         "fix",
         "docs",
