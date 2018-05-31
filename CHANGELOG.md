@@ -1,3 +1,14 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.8.2...v1.9.0) (2018-05-31)
+
+
+### Features
+
+* enable validation for revert commits ([5a41255](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/5a41255))
+* remove `amend` scope ([0615662](https://github.com/alan-agius4/speedy-commit-msg-hook/commit/0615662))
+
+
+
 <a name="1.8.2"></a>
 ## [1.8.2](https://github.com/alan-agius4/speedy-commit-msg-hook/compare/v1.8.1...v1.8.2) (2018-04-14)
 
