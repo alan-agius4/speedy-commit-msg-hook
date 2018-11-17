@@ -41,7 +41,7 @@
     "lodash": "^4.17.10"
   },
   "devDependencies": {
-    "@types/jasmine": "^2.5.41",
+    "@types/jasmine": "^3.0.0",
     "@types/lodash": "^4.14.57",
     "@types/node": "^10.0.0",
     "conventional-changelog-cli": "^2.0.0",
