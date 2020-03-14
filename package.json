@@ -48,7 +48,7 @@
     "jasmine": "^3.1.0",
     "rimraf": "^3.0.0",
     "ts-node": "^8.0.0",
-    "tslint": "^5.0.0",
+    "tslint": "^6.0.0",
     "typescript": "~3.7.0"
   },
   "typings": "dist/index.d.ts"
